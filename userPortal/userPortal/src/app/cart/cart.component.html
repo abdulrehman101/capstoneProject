@@ -1,0 +1,40 @@
+<br>
+<div class="container">
+    <h4>Your Cart</h4>
+</div>
+
+<div class="container">
+    <table class="table table-dark">
+        <tr>
+            <!-- <th>Id</th> -->
+            <th>Name</th>
+            <!-- <th>Photo</th> -->
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Option</th>
+            <th>Sub Total</th>
+        </tr>
+        <tr *ngFor="let item of items">
+            <!-- <td>{{item.product._id}}</td> -->
+            <td>{{item.product.name}}</td>
+            <!-- <td>
+                <img src="assets/images/{{item.product.photo}}" width="250" height="100">
+            </td> -->
+            <td>{{item.product.price}}</td>
+            <td>{{item.quantity}}</td>
+            <td>
+                <a class="btn btn-danger" (click)="remove(item.product._id)">Delete</a>
+            </td>
+            <td>{{item.product.price * item.quantity}}</td>
+        </tr>
+        <tr>
+            <td colspan="6" align="right"><strong>Total:</strong></td>
+            <td>{{total}}</td>
+        </tr>
+    </table>
+
+    <input type="button" [routerLink]="['/home']" class="btn btn-success" value="Keep Shopping" /> | 
+    <input type="button" [routerLink]="['/checkout',total]" class="btn btn-primary" value="checkOut" (click)="checkOut()" />
+
+    {{cartInfo}}
+</div>

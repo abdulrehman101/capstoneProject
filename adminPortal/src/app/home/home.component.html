@@ -1,0 +1,37 @@
+<div *ngIf="notify" class="alert alert-success container marge">
+    {{ notify }}
+</div>
+
+<div *ngIf="auth.isAuthenticated()" class="card text-center">
+    <br><br>
+    <div class="card-header">
+        <h3>Welcome {{auth.getUsername() | titlecase}} !!</h3>
+    </div>
+    <div class="card-body">
+        <h5 class="card-text">This is your Admin Portal</h5>
+        <h5 class="card-text">Navigate to <strong>Manage Companies</strong> and <strong>Manage Products</strong> to
+            view,
+            add, update and delete companies and their products</h5>
+    </div>
+    <div class="card-footer text-muted">
+        <a class="btn btn-secondary" [routerLink]="['/companies-list']">Manage Companies</a> |
+        <a class="btn btn-secondary" [routerLink]="['/product-list']">Manage Products</a>
+    </div>
+</div>
+
+<div *ngIf="!auth.isAuthenticated()" class="card text-center">
+    <br><br>
+    <div class="card-header">
+        <h3>Welcome User !!</h3>
+    </div>
+    <div class="card-body">
+        <h5 class="card-text">Please Login to enter your Admin Portal</h5>
+        <h5 class="card-text">Navigate to <strong>Login</strong> if you're an admin already, or
+            visit <strong>Register</strong> to register yourself as admin.
+        </h5>
+    </div>
+    <div class="card-footer text-muted">
+        <a class="btn btn-secondary" [routerLink]="['auth/login']">Login</a> |
+        <a class="btn btn-secondary" [routerLink]="['/auth/register']">Register</a>
+    </div>
+</div>

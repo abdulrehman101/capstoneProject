@@ -1,0 +1,71 @@
+<br><br>
+<div class="container" *ngIf="!greet">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    Welcome to Checkout <strong>{{auth.getUsername() | uppercase}}</strong>
+                </div>
+
+                <div class="card-body">
+                    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label>Name On Card</label>
+                            <input type="text" class="form-control" formControlName="name"
+                                [ngClass]="{'is-invalid': submitted && f.name.errors}" />
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required"> required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="number" class="form-control" formControlName="CardNumber"
+                                [ngClass]="{'is-invalid': submitted && f.CardNumber.errors}" />
+                            <div *ngIf="submitted && f.CardNumber.errors" class="invalid-feedback">
+                                <div *ngIf="f.CardNumber.errors.required"> required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Expiration</label>
+                            <input type="text" class="form-control" formControlName="Expiration"
+                                [ngClass]="{'is-invalid': submitted && f.Expiration.errors}" />
+                            <div *ngIf="submitted && f.Expiration.errors" class="invalid-feedback">
+                                <div *ngIf="f.Expiration.errors.required"> required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="number" class="form-control" formControlName="cvv"
+                                [ngClass]="{'is-invalid': submitted && f.cvv.errors}" />
+                            <div *ngIf="submitted && f.cvv.errors" class="invalid-feedback">
+                                <div *ngIf="f.cvv.errors.required"> required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group card-footer text-muted">
+                            <button class="btn btn-secondary">Pay</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card text-center" *ngIf="greet">
+    <div class="card-header">
+        <h5>Thanks for Shopping {{auth.getUsername() | uppercase}}</h5>
+    </div>
+
+    <div class="card-body">
+        <p>It was pleasure having you!</p>
+    </div>
+
+    <div class="card-footer text-muted">
+        Browse other products here:  <input type="button" [routerLink]="['/home']" class="btn btn-success" value="Keep Shopping" />
+    </div>
+</div>
